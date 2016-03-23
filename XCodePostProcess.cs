@@ -13,7 +13,7 @@ public static class XCodePostProcess
 	[PostProcessBuild(999)]
 	public static void OnPostProcessBuild( BuildTarget target, string pathToBuiltProject )
 	{
-		if (target != BuildTarget.iPhone) {
+		if (target != BuildTarget.iOS) {
 			Debug.LogWarning("Target is not iPhone. XCodePostProcess will not run");
 			return;
 		}
@@ -31,15 +31,26 @@ public static class XCodePostProcess
 
 		//TODO implement generic settings as a module option
 		project.overwriteBuildSetting("CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release");
-		
+
+		//编辑代码文件
+		EditorCode(pathToBuiltProject);
+
 		// Finally save the xcode project
 		project.Save();
-
 	}
 #endif
 
 	public static void Log(string message)
 	{
 		UnityEngine.Debug.Log("PostProcess: "+message);
+	}
+
+	private static void EditorCode(string filePath)
+	{
+		XClass UnityAppController = new XClass(filePath + "/Classes/UnityAppController.h");
+		UnityAppController.Replace ("NSObject<UIApplicationDelegate>","TestAppDelegate");
+
+		UnityAppController = new XClass(filePath + "/Classes/UnityAppController.mm");
+		UnityAppController.Replace ("[KeyboardDelegate Initialize];\n\n\treturn YES;","[KeyboardDelegate Initialize];\n\n\treturn [super application:application didFinishLaunchingWithOptions:launchOptions];");
 	}
 }

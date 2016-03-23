@@ -23,6 +23,10 @@ namespace UnityEditor.XCodeEditor
 		const string PlistName = "name";
 		const string PlistSchemes = "schemes";
 
+		const string PlistAppKey = "appkey";
+		const string PlistAppSecret = "appsecret";
+		const string PlistRedirectUrl = "redirecturl";
+
 		public XCPlist(string plistPath)
 		{
 			this.plistPath = plistPath;
@@ -60,7 +64,12 @@ namespace UnityEditor.XCodeEditor
 			}
 			else
 			{
-				dict[key] = HashtableToDictionary<string, object>((Hashtable)value);
+				if (value.GetType () == typeof(Hashtable)) {
+					dict[key] = HashtableToDictionary<string, object>((Hashtable)value);
+				} else {
+					dict[key] = value;
+				}
+
 				plistModified = true;
 			}
 		}
@@ -86,6 +95,10 @@ namespace UnityEditor.XCodeEditor
 				}
 				string name = (string)table[PlistName];
 				ArrayList shcemes = (ArrayList)table[PlistSchemes];
+
+				string appkey = (string)table[PlistAppKey];
+				string appsecret = (string)table [PlistAppSecret];
+				string redirecturl = (string)table[PlistRedirectUrl];
 				
 				// new schemes
 				List<object> urlTypeSchemes = new List<object>();
@@ -101,6 +114,9 @@ namespace UnityEditor.XCodeEditor
 					urlTypeDict[BundleTypeRole] = role;
 					urlTypeDict[BundleUrlName] = name;
 					urlTypeDict[BundleUrlSchemes] = urlTypeSchemes;
+					urlTypeDict [PlistAppKey] = appkey;
+					urlTypeDict [PlistAppSecret] = appsecret;
+					urlTypeDict [PlistRedirectUrl] = redirecturl;
 					bundleUrlTypes.Add(urlTypeDict);
 				}
 				else
