@@ -1,6 +1,8 @@
 1，参考http://www.xuanyusong.com/archives/2720/添加XClass
-支持对类文件操作Replace，WriteBelow，
+支持对类文件操作Replace，WriteBelow
+
 2，支持新版xcode对tbd库的添加
+
 3，支持plist中添加array，key-value，如：
 "UMENG_CHANNEL":"channel",
         "LSApplicationQueriesSchemes":
