@@ -22,6 +22,7 @@
                 "wechat",
                 "weixin"
             ]
+            
 4，支持urltype子项中添加key-value，如
 "urltype" : [
             {
