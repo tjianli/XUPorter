@@ -1,0 +1,66 @@
+{
+    "group": "testGroup",
+    "libs": 
+        [
+            "libresolv.tbd",
+            "libxml2.tbd",
+            "libxml2.2.tbd",
+            "libz.tbd",
+            "libicucore.tbd",
+            "libstdc++.tbd",
+            "libsqlite3.tbd",
+            "libiconv.tbd"
+        ],
+    "frameworks": 
+        [
+            "Security.framework",
+            "SystemConfiguration.framework",
+            "MobileCoreServices.framework",
+            "CoreTelephony.framework",
+            "QuartzCore.framework",
+            "JavaScriptCore.framework",
+            "CoreText.framework",
+            "ImageIO.framework",
+            "AdSupport.framework",
+            "CFNetwork.framework"
+            ],
+    "headerpaths": [],
+    "files":   
+        [
+        ],
+    "folders": [],    
+    "excludes": ["^.*.meta$", "^.*.mdown$", "^.*.pdf$",".DS_Store"],
+    "compiler_flags": [],
+	"linker_flags": ["-ObjC"],
+"plist": {
+        "UMENG_APPKEY":"test key",
+        "UMENG_CHANNEL":"channel",
+        "LSApplicationQueriesSchemes":
+            [
+                "alipay",
+                "alipayshare",
+                "mqqwpa",
+                "mqq",
+                "mqqopensdkapiV2",
+                "mqqopensdkapiV3",
+                "wtloginmqq2",
+                "mqqapi",
+                "mqqOpensdkSSoLogin",
+                "sinaweibohdsso",
+                "sinaweibosso",
+                "sinaweibohd",
+                "wechat",
+                "weixin"
+            ],
+        "urltype" : [
+            {
+                "role": "Editor",
+                "name" : "sina",
+                "schemes":[""],
+                "appkey":"",
+                "appsecret":"",
+                "redirecturl":""
+            }
+        ]
+    }
+}
